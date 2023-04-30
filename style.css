@@ -1,5 +1,33 @@
 body{
-
-    overflow: hidden;
-    position: fixed;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
 }
+
+.visible{
+    display: grid;
+}
+.nonvisible{
+    display: none;
+}
+#cercleTrans{
+    animation-name: circle;
+    animation-duration: 0.2s;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+#choixJoueur{
+    animation-name: circle;
+    animation-duration: 0.2s;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+
+@keyframes circle {
+    from {width: 10vw;height: 10vh;border-radius: 9999px;}
+    to {width: 100vw;
+        height: 100vh;
+        border-radius: 0;}
+}
+

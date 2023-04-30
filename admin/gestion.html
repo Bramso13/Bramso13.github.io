@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../tailwind.js"></script>
+    <title>Admin Menu</title>
+</head>
+<body>
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" id="connexion">
+    <div class="w-full max-w-md space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Connexion au serveur</h2>
+        </div>
+        <div class="mt-8 space-y-6">
+            <div class="-space-y-px rounded-md shadow-sm">
+                <div>
+                    <label class="sr-only">Mot de passe</label>
+                    <input type="password" name="admin" value="1234" autocomplete="current-password" required class="relative block w-full rounded-b-md border-0 py-2 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Mot de passe">
+                </div>
+            </div>
+            <div class="-space-y-px rounded-md shadow-sm">
+                <div>
+                    <label class="sr-only">Mot de passe</label>
+                    <input type="text" name="host" value="127.0.0.1" autocomplete="current-password" required class="relative block w-full rounded-b-md border-0 py-2 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Mot de passe">
+                </div>
+            </div>
+            <div class="-space-y-px rounded-md shadow-sm">
+                <div>
+                    <label class="sr-only">Mot de passe</label>
+                    <input type="number" name="port" value="2002" autocomplete="current-password" required class="relative block w-full rounded-b-md border-0 py-2 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Mot de passe">
+                </div>
+            </div>
+
+
+
+            <div>
+                <button type="button" id="connect" class="group relative flex w-full justify-center my-2 rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Se connecter
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 hidden" id="gestion">
+    <div class="w-full max-w-md space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Gestion</h2>
+        </div>
+        <div>
+            <button type="button" id="start" class="group relative flex w-full justify-center my-2 rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Start
+            </button>
+            <button type="button" id="disconnect" class="group relative flex w-full justify-center my-2 rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Se Déconnecter
+            </button>
+        </div>
+        <div id="gestionDiv">
+
+        </div>
+    </div>
+</div>
+<script>
+
+
+
+</script>
+<script src="admin.js"></script>
+
+</body>
+</html>

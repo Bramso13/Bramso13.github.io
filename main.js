@@ -1,5 +1,81 @@
 
 
+
+document.addEventListener('keypress', (e)=>{
+
+    if(e.code === 'KeyD'){
+        document.getElementById('notConnected').classList.add('hidden');
+        document.getElementById('divChoixJoueur').classList.remove('hidden')
+    }
+})
+
+const p = document.getElementById('pointDeVie');
+const kills = document.getElementById('kill');
+const temps = document.getElementById('temps');
+const cercleTrans = document.getElementById('divCercleTrans');
+affichePointDeVie(1);
+afficheKill(0);
+afficheTemps(0);
+
+export function affichePointDeVie(points){
+    if(points <= 0){
+        mort()
+    }
+    p.innerText = points;
+}
+export function afficheKill(kill){
+
+    kills.innerText = kill;
+}
+function mort(){
+    const connected = document.getElementById("connected")
+    const titleFin = document.getElementById("titleFin")
+    const cercleTranss = document.getElementById("cercleTrans")
+    cercleTranss.classList.remove("bg-indigo-600")
+    cercleTranss.classList.add("bg-red-600")
+    titleFin.innerText = "Vous êtes morts."
+    cercleTrans.classList.remove("hidden")
+    connected.classList.add("hidden")
+}
+export function endGame(){
+    const titleFin = document.getElementById("titleFin")
+    const cercleTranss = document.getElementById("cercleTrans")
+    cercleTranss.classList.remove("bg-red-600")
+    cercleTranss.classList.add("bg-indigo-600")
+    titleFin.innerText = "Partie Terminée."
+    const connected = document.getElementById("connected")
+    cercleTrans.classList.remove("hidden")
+    connected.classList.add("hidden")
+
+
+}
+
+export async function afficheTemps(tempss){
+    if(tempss > 0){
+        let t = tempss;
+        var l = setInterval(()=>{
+            t = t-1;
+
+            temps.innerText = (Math.ceil(t/60) < 10 ? "0"+Math.ceil(t/60) : Math.ceil(t/60))-1  + ":" + (t%60 < 10 ? "0"+t%60 : t%60)
+            if(t <= 0){
+                clearInterval(l);
+                console.log("end game")
+                endGame()
+            }
+        }, 1000);
+    }
+}
+
+
+
+function afficheChoix(){
+
+}
+
+
+
+
+
 var canvas, ctx;
 
 window.addEventListener('load', () => {
@@ -8,20 +84,16 @@ window.addEventListener('load', () => {
     ctx = canvas.getContext('2d');
     resize();
 
-    document.addEventListener('mousedown', startDrawing);
-    document.addEventListener('mouseup', stopDrawing);
-    document.addEventListener('mousemove', Draw);
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mousemove', Draw);
 
-    document.addEventListener('touchstart', startDrawing);
-    document.addEventListener('touchend', stopDrawing);
-    document.addEventListener('touchcancel', stopDrawing);
-    document.addEventListener('touchmove', Draw);
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchend', stopDrawing);
+    canvas.addEventListener('touchcancel', stopDrawing);
+    canvas.addEventListener('touchmove', Draw);
     window.addEventListener('resize', resize);
 
-    document.getElementById("x_coordinate").innerText = 0;
-    document.getElementById("y_coordinate").innerText = 0;
-    document.getElementById("speed").innerText = 0;
-    document.getElementById("angle").innerText = 0;
 });
 
 
@@ -29,7 +101,7 @@ window.addEventListener('load', () => {
 
 var width, height, radius, x_orig, y_orig;
 function resize() {
-    width = 400;
+    width = 500;
     radius = 70;
     height = radius * 6.5;
     ctx.canvas.width = width;
@@ -64,8 +136,8 @@ let paint = false;
 function getPosition(event) {
     var mouse_x = event.clientX || event.touches[0].clientX;
     var mouse_y = event.clientY || event.touches[0].clientY;
-    coord.x = mouse_x - canvas.offsetLeft;
-    coord.y = mouse_y - canvas.offsetTop;
+    coord.x = mouse_x - canvas.offsetLeft +80 ;
+    coord.y = mouse_y - canvas.offsetTop +80;
 }
 
 function is_it_in_the_circle() {
@@ -92,11 +164,11 @@ function stopDrawing() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background();
     joystick(width / 2, height / 3);
-    document.getElementById("x_coordinate").innerText = 0;
-    document.getElementById("y_coordinate").innerText = 0;
-    document.getElementById("speed").innerText = 0;
-    document.getElementById("angle").innerText = 0;
-
+    /* document.getElementById("x_coordinate").innerText = 0;
+     document.getElementById("y_coordinate").innerText = 0;
+     document.getElementById("speed").innerText = 0;
+     document.getElementById("angle").innerText = 0;
+ */
 }
 
 function Draw(event) {
@@ -134,12 +206,20 @@ function Draw(event) {
         var x_relative = Math.round(x - x_orig);
         var y_relative = Math.round(y - y_orig);
 
+        /*console.log("x:"+x_relative);
+        console.log(", y:"+y_relative);
+        console.log(", speed:"+speed);
+        console.log(", angle:"+angle_in_degrees);
+        */
+        var json = {x,y,speed,angle};
+        console.log(json);
 
-        document.getElementById("x_coordinate").innerText =  x_relative;
-        document.getElementById("y_coordinate").innerText =y_relative ;
-        document.getElementById("speed").innerText = speed;
-        document.getElementById("angle").innerText = angle_in_degrees;
 
+        /* document.getElementById("x_coordinate").innerText =  x_relative;
+         document.getElementById("y_coordinate").innerText =y_relative ;
+         document.getElementById("speed").innerText = speed;
+         document.getElementById("angle").innerText = angle_in_degrees;
+         */
 
     }
 }

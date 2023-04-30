@@ -1,60 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="fr" charset="UTF-8">
     <title>Manette HunterXHuntered</title>
-    <script src="main.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <script src="tailwind.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="jdenticon.min.js"></script>
 </head>
 <body >
+    <div class="flex justify-center items-center w-full h-full absolute hidden" id="divChoixJoueur">
+        <div class="flex self-center rounded-full bg-indigo-600 duration-200 ease-in justify-center" id="choixJoueur">
+            <div class="flex-col pt-15">
+                <h2 class="mt-6 mb-2 text-center text-3xl font-bold tracking-tight text-gray-900">
+                    Choix du joueur</h2>
+                <label class="block">
+                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-black">
+                    Nom
+                  </span>
+                    <input type="text" name="nom" id="nom" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Entrez votre nom." />
+                </label>
+                <svg width="80" height="80" data-jdenticon-value="d" class="ml-16 my-2" id="svgIcon"></svg>
+                <a href="#" class="ml-7 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100 text-xs">Retenez bien votre logo</a>
+                <br>
+                <br>
 
-    <div class="portrait:hidden grid grid-cols-3 grid-rows-1" style="height: 25rem;">
-        <header class="grid grid-cols-2 grid-rows-2 w-full self-center" style="height: fit-content;">
-            <button type="submit" class="group relative flex h-20 justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 m-1">Attaque</button>
-            <button type="submit" class="group relative flex h-20 justify-center items-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 m-1">Super Attaque</button>
-            <button type="submit" class="group relative flex h-20 justify-center items-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 m-1">Super Defence</button>
-            <button type="submit" class="group relative flex h-20 justify-center items-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 m-1">...</button>
+                <a class="ml-16 rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600" id="boutonJouer">
+                    Jouer !
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center items-center w-full h-full absolute hidden" id="divCercleTrans">
+        <div class="flex self-center rounded-full bg-indigo-600 duration-200 ease-in justify-center" id="cercleTrans">
+            <div class="flex-col pt-15">
+                <h2 class="mt-6 mb-2 text-center text-3xl font-bold tracking-tight text-gray-900" id="titleFin">
+                    Partie Terminée.</h2>
+                <h2 class="mt-6 mb-2 text-center text-3xl font-bold tracking-tight text-gray-900" id="titleFinMort">
+                    Partie Terminée.</h2>
+                <div class="flex-row flex p-7">
+                    <div class="flex h-full w-full items-center justify-center">
+                        <div class="flex flex-col items-start">
+                            <div class="rounded-md bg-black/5 p-2 ring-1 ring-black/10">
+                                <svg class="h-7 w-7 text-black" fill="none" stroke-width="1.5" stroke="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Skull</title><path d="M448 225.64v99a64 64 0 01-40.23 59.42l-23.68 9.47A32 32 0 00364.6 417l-10 50.14A16 16 0 01338.88 480H173.12a16 16 0 01-15.69-12.86L147.4 417a32 32 0 00-19.49-23.44l-23.68-9.47A64 64 0 0164 324.67V224c0-105.92 85.77-191.81 191.65-192S448 119.85 448 225.64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="168" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="344" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 336l-16 48h32l-16-48zM256 448v32M208 448v32M304 448v32"/></svg>
+                            </div>
+                            <dt class="mt-4 font-semibold text-black self-center" id="kill">0</dt>
+                        </div>
+                    </div>
+                </div>
+                <a onclick="location.reload()" class="ml-16 rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+                    Rejouer
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="notConnected" class="portrait:hidden relative flex justify-center pt-8 hidden" >
+        <div class="flex-col">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-black ml-10" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Globe</title><path d="M340.75 344.49c5.91-20.7 9.82-44.75 11.31-67.84a4.41 4.41 0 00-4.46-4.65h-71.06a4.43 4.43 0 00-4.47 4.39v55.3a4.44 4.44 0 004.14 4.38 273.51 273.51 0 0159 11.39 4.45 4.45 0 005.54-2.97zM323.58 377.31a260.05 260.05 0 00-46.6-9.09 4.42 4.42 0 00-4.91 4.29v65.24a4.47 4.47 0 006.76 3.7c15.9-9.27 29-24.84 40.84-45.43 1.94-3.36 4.89-9.15 6.67-12.69a4.29 4.29 0 00-2.76-6.02zM235.29 368.4a256.85 256.85 0 00-46.56 8.82c-2.64.76-3.75 4.4-2.55 6.79 1.79 3.56 4 8.11 5.89 11.51 13 23 26.84 37.5 41.24 45.93a4.47 4.47 0 006.76-3.7v-65.27a4.16 4.16 0 00-4.78-4.08zM235.6 272h-71.06a4.41 4.41 0 00-4.46 4.64c1.48 23.06 5.37 47.16 11.26 67.84a4.46 4.46 0 005.59 3 272.2 272.2 0 0159-11.36 4.44 4.44 0 004.15-4.38V276.4a4.43 4.43 0 00-4.48-4.4zM277 143.78a235.8 235.8 0 0046.5-9.14 4.3 4.3 0 002.76-6c-1.79-3.57-4.27-8.68-6.17-12.09-12.29-22-26.14-37.35-41.24-46a4.48 4.48 0 00-6.76 3.7v65.23a4.43 4.43 0 004.91 4.3zM276.54 240h71.06a4.39 4.39 0 004.46-4.58c-1.48-22.77-5.27-47.8-11.16-68.22a4.46 4.46 0 00-5.59-2.95c-19 5.74-38.79 10.43-59.09 12a4.4 4.4 0 00-4.15 4.32v55.11a4.4 4.4 0 004.47 4.32zM233.31 70.56c-15.42 8.57-29.17 24.43-41.47 46.37-1.91 3.41-4.19 8.11-6 11.67a4.31 4.31 0 002.76 6 225.42 225.42 0 0046.54 9.17 4.43 4.43 0 004.91-4.29V74.26a4.49 4.49 0 00-6.74-3.7zM235.92 176.26c-20.3-1.55-40.11-6.24-59.09-12a4.46 4.46 0 00-5.59 2.95c-5.89 20.42-9.68 45.45-11.16 68.22a4.39 4.39 0 004.46 4.58h71.06a4.4 4.4 0 004.47-4.34v-55.09a4.4 4.4 0 00-4.15-4.32z"/><path d="M414.39 97.61A224 224 0 1097.61 414.39 224 224 0 10414.39 97.61zM176.6 430.85a219.08 219.08 0 01-12.48-19.66c-2-3.69-4.84-9.26-6.73-13.13a7.29 7.29 0 00-10.31-3.16c-4.3 2.41-10 5.72-14.13 8.43a147.29 147.29 0 01-23.57-22.43 248.83 248.83 0 0130.41-18.36c1.86-1 2.77-2.14 2.18-4.18a374.8 374.8 0 01-14.09-82.17 4.36 4.36 0 00-4.3-4.17H66.84a2 2 0 01-2-1.7A98.28 98.28 0 0164 256a96.27 96.27 0 01.86-14.29 2 2 0 012-1.7h56.74c2.29 0 4.17-1.32 4.29-3.63a372.71 372.71 0 0114-81.83 4.36 4.36 0 00-2.19-5.11 260.63 260.63 0 01-29.84-17.9 169.82 169.82 0 0123.14-22.8c4.08 2.68 9.4 5.71 13.66 8.11a7.89 7.89 0 0011-3.42c1.88-3.87 4-8.18 6.06-11.88a221.93 221.93 0 0112.54-19.91A185 185 0 01256 64c28.94 0 55.9 7 80.53 18.46a202.23 202.23 0 0112 19c2.59 4.66 5.34 10.37 7.66 15.32a4.29 4.29 0 005.92 1.94c5.38-2.91 11.21-6.26 16.34-9.63a171.36 171.36 0 0123.2 23 244.89 244.89 0 01-29.06 17.31 4.35 4.35 0 00-2.18 5.12 348.68 348.68 0 0113.85 81.4 4.33 4.33 0 004.3 4.12l56.62-.07a2 2 0 012 1.7 117.46 117.46 0 010 28.62 2 2 0 01-2 1.72h-56.67a4.35 4.35 0 00-4.3 4.17 367.4 367.4 0 01-13.87 81.3 4.45 4.45 0 002.19 5.19c5 2.59 10.57 5.48 15.37 8.42s9.55 6.08 14.13 9.34a172.73 172.73 0 01-23 22.93c-2.44-1.61-5.34-3.44-7.84-4.94-1.72-1-4.89-2.77-6.65-3.76-3.82-2.14-7.88-.54-9.79 3.4s-4.83 9.59-6.87 13.25a212.42 212.42 0 01-12.35 19.53C310.91 442.37 284.94 448 256 448s-54.77-5.63-79.4-17.15z"/></svg>
+            <dt class="font-bold text-black " >En attente d'autres joueurs...</dt>
+        </div>
+    </div>
+    <div class="portrait:hidden grid grid-cols-3 grid-rows-1" style="height: 350px;" id="connected">
+        <header class="grid grid-cols-2 grid-rows-2 w-full self-center pt-20 pl-10" style="height: fit-content;">
+            <button type="submit" onclick="attaqueMsg()" class="group relative flex h-20 justify-center items-center rounded-full border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 m-1">
+                <svg class="h-6 w-6" stroke-width="1.5" stroke="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Rocket</title><path d="M328.85 156.79a26.69 26.69 0 1018.88 7.81 26.6 26.6 0 00-18.88-7.81z"/><path d="M477.44 50.06a.29.29 0 010-.09 20.4 20.4 0 00-15.13-15.3c-29.8-7.27-76.68.48-128.63 21.28-52.36 21-101.42 52-134.58 85.22A320.7 320.7 0 00169.55 175c-22.33-1-42 2.18-58.57 9.41-57.74 25.41-74.23 90.44-78.62 117.14a25 25 0 0027.19 29h.13l64.32-7.02c.08.82.17 1.57.24 2.26a34.36 34.36 0 009.9 20.72l31.39 31.41a34.27 34.27 0 0020.71 9.91l2.15.23-7 64.24v.13A25 25 0 00206 480a25.25 25.25 0 004.15-.34C237 475.34 302 459.05 327.34 401c7.17-16.46 10.34-36.05 9.45-58.34a314.78 314.78 0 0033.95-29.55c33.43-33.26 64.53-81.92 85.31-133.52 20.69-51.36 28.48-98.59 21.39-129.53zM370.38 224.94a58.77 58.77 0 110-83.07 58.3 58.3 0 010 83.07z"/><path d="M161.93 386.44a16 16 0 00-11 2.67c-6.39 4.37-12.81 8.69-19.29 12.9-13.11 8.52-28.79-6.44-21-20l12.15-21a16 16 0 00-15.16-24.91A61.25 61.25 0 0072 353.56c-3.66 3.67-14.79 14.81-20.78 57.26A357.94 357.94 0 0048 447.59 16 16 0 0064 464h.4a359.87 359.87 0 0036.8-3.2c42.47-6 53.61-17.14 57.27-20.8a60.49 60.49 0 0017.39-35.74 16 16 0 00-13.93-17.82z"/></svg>
+            </button>
+            <button type="submit" onclick="defenceMsg()" class="group relative flex h-20 justify-center items-center rounded-full border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 m-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Shield Half</title><path d="M48.9 112.37C138.32 96.33 175.29 84.45 256 48c80.71 36.45 117.68 48.33 207.1 64.37C479.3 369.13 271.42 457.79 256 464c-15.42-6.21-223.3-94.87-207.1-351.63z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 48c80.71 36.45 117.68 48.33 207.1 64.37C479.3 369.13 271.42 457.79 256 464z"/></svg>
+            </button>
+
         </header>
         <div class="flex-col flex p-10">
             <div class="flex h-full w-full items-center justify-center">
                 <div class="flex flex-col items-start">
-                    <div class="rounded-md bg-black/5 p-2 ring-1 ring-black/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Heart Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M256 360a16 16 0 01-9-2.78c-39.3-26.68-56.32-45-65.7-56.41-20-24.37-29.58-49.4-29.3-76.5.31-31.06 25.22-56.33 55.53-56.33 20.4 0 35 10.63 44.1 20.41a6 6 0 008.72 0c9.11-9.78 23.7-20.41 44.1-20.41 30.31 0 55.22 25.27 55.53 56.33.28 27.1-9.31 52.13-29.3 76.5-9.38 11.44-26.4 29.73-65.7 56.41A16 16 0 01256 360z"/></svg>
-                    </div>
-                    <dt class="mt-4 font-semibold text-black">2000</dt>
+                    <svg width="80" height="80" data-jdenticon-value="d" class="h-20 w-20" id="iconJoueur"></svg>
                 </div>
+
             </div>
             <div class="flex h-full w-full items-center justify-center my-3">
                 <div class="flex flex-col items-start">
                     <div class="rounded-md bg-black/5 p-2 ring-1 ring-black/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Hourglass</title><path d="M145.61 464h220.78c19.8 0 35.55-16.29 33.42-35.06C386.06 308 304 310 304 256s83.11-51 95.8-172.94c2-18.78-13.61-35.06-33.41-35.06H145.61c-19.8 0-35.37 16.28-33.41 35.06C124.89 205 208 201 208 256s-82.06 52-95.8 172.94c-2.14 18.77 13.61 35.06 33.41 35.06z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M343.3 432H169.13c-15.6 0-20-18-9.06-29.16C186.55 376 240 356.78 240 326V224c0-19.85-38-35-61.51-67.2-3.88-5.31-3.49-12.8 6.37-12.8h142.73c8.41 0 10.23 7.43 6.4 12.75C310.82 189 272 204.05 272 224v102c0 30.53 55.71 47 80.4 76.87 9.95 12.04 6.47 29.13-9.1 29.13z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Hourglass</title><path d="M145.61 464h220.78c19.8 0 35.55-16.29 33.42-35.06C386.06 308 304 310 304 256s83.11-51 95.8-172.94c2-18.78-13.61-35.06-33.41-35.06H145.61c-19.8 0-35.37 16.28-33.41 35.06C124.89 205 208 201 208 256s-82.06 52-95.8 172.94c-2.14 18.77 13.61 35.06 33.41 35.06z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M343.3 432H169.13c-15.6 0-20-18-9.06-29.16C186.55 376 240 356.78 240 326V224c0-19.85-38-35-61.51-67.2-3.88-5.31-3.49-12.8 6.37-12.8h142.73c8.41 0 10.23 7.43 6.4 12.75C310.82 189 272 204.05 272 224v102c0 30.53 55.71 47 80.4 76.87 9.95 12.04 6.47 29.13-9.1 29.13z"/></svg>
                     </div>
-                    <dt class="mt-4 font-semibold text-black">2000</dt>
+                    <dt class="mt-4 font-semibold text-black self-center" id="temps">0:0</dt>
                 </div>
+                <div class="flex flex-col items-start ml-2">
+                    <div class="rounded-md bg-black/5 p-2 ring-1 ring-black/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black" stroke-width="1.5" stroke="currentColor" aria-hidden="true" viewBox="0 0 512 512"><title>Heart Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M256 360a16 16 0 01-9-2.78c-39.3-26.68-56.32-45-65.7-56.41-20-24.37-29.58-49.4-29.3-76.5.31-31.06 25.22-56.33 55.53-56.33 20.4 0 35 10.63 44.1 20.41a6 6 0 008.72 0c9.11-9.78 23.7-20.41 44.1-20.41 30.31 0 55.22 25.27 55.53 56.33.28 27.1-9.31 52.13-29.3 76.5-9.38 11.44-26.4 29.73-65.7 56.41A16 16 0 01256 360z"/></svg>
+                    </div>
+                    <dt class="mt-4 font-semibold text-black self-center" id="pointDeVie">0</dt>
+                </div>
+
             </div>
             <div class="flex h-full w-full items-center justify-center my-3">
                 <div class="flex flex-col items-start">
                     <div class="rounded-md bg-black/5 p-2 ring-1 ring-black/10">
-                        <svg class="h-6 w-6 text-black" fill="none" stroke-width="1.5" stroke="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Skull</title><path d="M448 225.64v99a64 64 0 01-40.23 59.42l-23.68 9.47A32 32 0 00364.6 417l-10 50.14A16 16 0 01338.88 480H173.12a16 16 0 01-15.69-12.86L147.4 417a32 32 0 00-19.49-23.44l-23.68-9.47A64 64 0 0164 324.67V224c0-105.92 85.77-191.81 191.65-192S448 119.85 448 225.64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="168" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="344" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 336l-16 48h32l-16-48zM256 448v32M208 448v32M304 448v32"/></svg>
+                        <svg class="h-7 w-7 text-black" fill="none" stroke-width="1.5" stroke="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Skull</title><path d="M448 225.64v99a64 64 0 01-40.23 59.42l-23.68 9.47A32 32 0 00364.6 417l-10 50.14A16 16 0 01338.88 480H173.12a16 16 0 01-15.69-12.86L147.4 417a32 32 0 00-19.49-23.44l-23.68-9.47A64 64 0 0164 324.67V224c0-105.92 85.77-191.81 191.65-192S448 119.85 448 225.64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="168" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><circle cx="344" cy="280" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 336l-16 48h32l-16-48zM256 448v32M208 448v32M304 448v32"/></svg>
                     </div>
-                    <dt class="mt-4 font-semibold text-black">2000</dt>
+                    <dt class="mt-4 font-semibold text-black self-center" id="kill">0</dt>
                 </div>
             </div>
+
         </div>
-        <main class="flex w-full h-full justify-center items-center content-center pt-20">
+        <main class="flex w-full h-full justify-center content-center pt-20" >
             <canvas id="canvas" name="game"></canvas>
         </main>
     </div>
-    <div class="landscape:hidden">
-        <p>
-            This experience is designed to be viewed in landscape. Please rotate your
-            device to view the site.
-        </p>
+    <div class="landscape:hidden flex justify-center items-center">
+       <img src="tilt-your-phone-turn-your-phone.gif"/>
     </div>
 
 </body>
+<script type="module" src="icon.js"></script>
 </html>
 <!--
 Angle: <span id="angle"> </span>
